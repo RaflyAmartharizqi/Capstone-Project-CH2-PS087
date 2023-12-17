@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "821873395402",
+    "firebase_url": "https://capstone-project-408107-default-rtdb.firebaseio.com",
+    "project_id": "capstone-project-408107",
+    "storage_bucket": "capstone-project-408107.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821873395402:android:562287dc53f5be54a61633",
+        "android_client_info": {
+          "package_name": "com.bangkitacademy.nutrace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC1H-u_98l3Qa4T_SXbc0WbBy7nA3IMEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

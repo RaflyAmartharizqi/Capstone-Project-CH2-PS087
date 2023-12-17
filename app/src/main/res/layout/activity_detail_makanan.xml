@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="">
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        tools:src="@tools:sample/avatars"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nama Makanan"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+    <View
+        android:id="@+id/pembatas1"
+        android:layout_width="370dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="#DDDDDD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/repo_and_follow_info"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/pembatas1"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_detail_repository"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/str_repositories"
+            app:layout_constraintStart_toStartOf="@+id/str_repositories"
+            app:layout_constraintTop_toTopOf="@+id/tv_followers"
+            tools:text="00" />
+
+        <TextView
+            android:id="@+id/str_repositories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Calori"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/str_followers"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_repository" />
+
+
+        <TextView
+            android:id="@+id/tv_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/str_followers"
+            app:layout_constraintStart_toEndOf="@+id/str_repositories"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="00" />
+
+
+        <TextView
+            android:id="@+id/str_followers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Protein"
+            android:textAlignment="center"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/str_following"
+            app:layout_constraintStart_toEndOf="@+id/str_repositories"
+            app:layout_constraintTop_toBottomOf="@+id/tv_followers" />
+
+        <TextView
+            android:id="@+id/tv_following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/str_following"
+            app:layout_constraintStart_toEndOf="@+id/str_followers"
+            app:layout_constraintTop_toTopOf="@+id/tv_followers"
+            tools:text="00" />
+
+        <TextView
+            android:id="@+id/str_following"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Carbohydrate"
+            android:textSize="15sp"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/str_fat"
+            app:layout_constraintStart_toEndOf="@id/str_followers"
+            app:layout_constraintTop_toBottomOf="@+id/tv_following" />
+
+        <TextView
+            android:id="@+id/tv_fat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/str_following"
+            app:layout_constraintStart_toEndOf="@+id/str_fat"
+            app:layout_constraintTop_toTopOf="@+id/tv_following"
+            tools:text="00" />
+
+        <TextView
+            android:id="@+id/str_fat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Fat"
+            android:textSize="15sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/str_following"
+            app:layout_constraintTop_toBottomOf="@+id/tv_fat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs_layout_follow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repo_and_follow_info" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_follow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs_layout_follow">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- CardView sebagai latar belakang -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_background"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/primaryColorLight"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- ToggleButton -->
+        <ToggleButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:textOn=""
+            android:textOff=""
+            android:background="@drawable/favorite_toggle"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            app:layout_constraintStart_toStartOf="@id/card_background"
+            app:layout_constraintEnd_toEndOf="@id/card_background"
+            app:layout_constraintTop_toTopOf="@id/card_background"
+            app:layout_constraintBottom_toBottomOf="@id/card_background" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

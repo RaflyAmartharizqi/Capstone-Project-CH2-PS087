@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">NuTrace</string>
+
+    <!-- Custom View -->
+    <string name="name_required">Name is required</string>
+    <string name="input_email">Input Your Email</string>
+    <string name="invalid_email">Invalid Format</string>
+    <string name="input_pass">Input Your Password</string>
+    <string name="pass_length">Password must be at least 8 characters</string>
+
+    <!-- Login Page -->
+    <string name="message_login_page">Please enter your data</string>
+    <string name="title_login_page">Welcome to the NuTrace</string>
+
+    <!-- Signup Page -->
+    <string name="title_signup_page">Complete your data below</string>
+
+    <!-- Authentication -->
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="check_input">Check Your Input</string>
+
+    <!-- Menu -->
+    <string name="menu_planner">Planner</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_favorite">Favorite</string>
+
+    <!-- Nav -->
+    <string name="title_planner">Planner</string>
+    <string name="title_search">Search</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profile</string>
+
+    <!-- Profile -->
+    <string name="username">Username</string>
+</resources>
