@@ -106,7 +106,7 @@ model = FoodLensModel(user_model, food_model, task)
 model.compile(optimizer=tf.keras.optimizers.Adagrad(0.5))
 
 # Train the model
-model.fit(ratings.batch(4096), epochs=10)
+model.fit(ratings.batch(4096), epochs=50)
 
 # Brute-Force Search Index
 index = tfrs.layers.factorized_top_k.BruteForce(model.user_model)
