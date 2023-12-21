@@ -7,6 +7,7 @@ import pandas as pd
 
 # Library Data Preprocessing
 import numpy as  np
+import random
 
 # Library Model
 import tensorflow as tf
@@ -111,6 +112,56 @@ model.fit(ratings.batch(4096), epochs=10)
 index = tfrs.layers.factorized_top_k.BruteForce(model.user_model)
 index.index_from_dataset(food.batch(100).map(lambda food_name: (food_name, model.food_model(food_name))))
 
+#============================ Batas Recommenders ==============================================
+
+#Food diet recommendation
+dataset=df_food.copy()
+columns=['name', 'food_name', 'Images',
+         'CookTime', 'PrepTime', 'TotalTime',
+         'RecipeIngredientParts', 'Calories', 'FatContent',
+         'CarbohydrateContent', 'ProteinContent', 'RecipeServings',
+         'RecipeInstructions','is_seafood','is_nut', 'is_lactose'
+         ]
+dataset=dataset[columns]
+dataset.head()
+
+extracted_data=dataset.copy()
+extracted_data = extracted_data[extracted_data.Images != 'character(0)']
+extracted_data.to_csv('Resep_Dengan_Kolom_Alergen.csv', index=False)
+
+from sklearn.metrics.pairwise import euclidean_distances
+
+# Define the recommendation function
+def get_recommendations(input_calories, input_seafood, input_nut, input_lactose, top_k):
+    # Calculate the Euclidean distances between input calories and all recipes
+    distances = euclidean_distances(extracted_data[['Calories']], [[input_calories]])
+
+    # Add distances as a new column in the dataset
+    extracted_data['Distance'] = distances
+
+    if input_seafood == 1:
+      filtered_recipes = extracted_data[
+        (extracted_data['is_seafood'] == 0)
+      ]
+
+    if input_nut == 1:
+      filtered_recipes = extracted_data[
+        (extracted_data['is_nut'] == 0)
+      ]
+
+    if input_lactose == 1:
+      filtered_recipes = extracted_data[
+        (extracted_data['is_lactose'] == 0)
+      ]
+    # Sort recipes based on the distances in ascending order
+    sorted_recipes = filtered_recipes.sort_values('Distance')
+
+    # Select top k recipes
+    top_recipes = sorted_recipes.head(top_k)
+
+    return top_recipes
+
+
 # Flask Application
 @app.route('/recommendation', methods=['POST'])
 def recommendation():
@@ -126,6 +177,55 @@ def search():
     srjs = search.to_dict('records')
 
     return {"message": "Search success deck!", "status": 200, "data": srjs}
+
+@app.route('/food-recomendation', methods=['POST'])
+def food():
+    calories = request.json['calories']
+    input_seafood = request.json['input_seafood']
+    input_nut = request.json['input_nut']
+    input_lactose = request.json['input_lactose']
+
+    #Count calories divided by 6 meals
+    count_calories_per_meal = calories / 3
+
+    breakfast_1 = random.uniform(10,count_calories_per_meal)
+    recommended_recipes_breakfast_1 = get_recommendations(breakfast_1, input_seafood, input_nut, input_lactose, top_k=1)
+    breakfast_2 = count_calories_per_meal - breakfast_1
+    recommended_recipes_breakfast_2 = get_recommendations(breakfast_2, input_seafood, input_nut, input_lactose, top_k=1)
+
+    lunch_1 = random.uniform(10,count_calories_per_meal)
+    recommended_recipes_lunch_1 = get_recommendations(lunch_1, input_seafood, input_nut, input_lactose, top_k=1)
+    lunch_2 = count_calories_per_meal - lunch_1
+    recommended_recipes_lunch_2 = get_recommendations(lunch_2, input_seafood, input_nut, input_lactose, top_k=1)
+
+
+    dinner_1 = random.uniform(10,count_calories_per_meal)
+    recommended_recipes_dinner_1 = get_recommendations(dinner_1, input_seafood, input_nut, input_lactose, top_k=1)
+    dinner_2 = count_calories_per_meal - dinner_1
+    recommended_recipes_dinner_2 = get_recommendations(dinner_2, input_seafood, input_nut, input_lactose, top_k=1)
+
+
+    recommended_recipes = get_recommendations(calories, input_seafood, input_nut, input_lactose, top_k=10)
+    recommended_recipes_breakfast_1 = recommended_recipes_breakfast_1.to_dict('records')
+    recommended_recipes_breakfast_2 = recommended_recipes_breakfast_2.to_dict('records')
+    recommended_recipes_lunch_1 = recommended_recipes_lunch_1.to_dict('records')
+    recommended_recipes_lunch_2 = recommended_recipes_lunch_2.to_dict('records')
+    recommended_recipes_dinner_1 = recommended_recipes_dinner_1.to_dict('records')
+    recommended_recipes_dinner_2 = recommended_recipes_dinner_2.to_dict('records')
+
+
+    srjs = recommended_recipes.to_dict('records')
+    return  {   
+                "message": "Recomendation success deck!", 
+                "status": 200, 
+                "breakfast_1": recommended_recipes_breakfast_1,
+                "breakfast_2": recommended_recipes_breakfast_2,
+                "lunch_1": recommended_recipes_lunch_1,
+                "lunch_2": recommended_recipes_lunch_2,
+                "dinner_1": recommended_recipes_dinner_1,
+                "dinner_2": recommended_recipes_dinner_2,
+                "totral_calories": calories,
+            }
 
 @app.route('/')
 def ok():
