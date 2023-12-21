@@ -170,9 +170,10 @@ def recommendation():
     recommended_food_names = [name.decode('UTF-8') for name in food_name[0, :4].numpy()]
     return jsonify({"message": "Predict success!", "status": 200, "data": recommended_food_names})
 
-@app.route('/search', methods=['POST'])
-def search():
-    search = request.json['food_name']
+@app.route('/search', methods=['GET'])
+def search_get():
+    args = request.args
+    search = args.get('food_name')
     search = df_food[df_food['food_name'].str.contains(search)]
     srjs = search.to_dict('records')
 
@@ -226,6 +227,66 @@ def food():
                 "dinner_2": recommended_recipes_dinner_2,
                 "totral_calories": calories,
             }
+
+
+@app.route('/food-recommendation-get', methods=['GET'])
+def food_get():
+    args = request.args
+    calories = args.get("calories", default=0, type=float)
+    input_seafood = args.get('input_seafood', type=int)
+    input_nut = args.get('input_nut', type=int)
+    input_lactose = args.get('input_lactose', type=int)
+
+    #Count calories divided by 6 meals
+    count_calories_per_meal = calories / 3
+
+    breakfast_1 = random.uniform(10,count_calories_per_meal)
+    recommended_recipes_breakfast_1 = get_recommendations(breakfast_1, input_seafood, input_nut, input_lactose, top_k=1)
+    breakfast_2 = count_calories_per_meal - breakfast_1
+    recommended_recipes_breakfast_2 = get_recommendations(breakfast_2, input_seafood, input_nut, input_lactose, top_k=1)
+
+    lunch_1 = random.uniform(10,count_calories_per_meal)
+    recommended_recipes_lunch_1 = get_recommendations(lunch_1, input_seafood, input_nut, input_lactose, top_k=1)
+    lunch_2 = count_calories_per_meal - lunch_1
+    recommended_recipes_lunch_2 = get_recommendations(lunch_2, input_seafood, input_nut, input_lactose, top_k=1)
+
+
+    dinner_1 = random.uniform(10,count_calories_per_meal)
+    recommended_recipes_dinner_1 = get_recommendations(dinner_1, input_seafood, input_nut, input_lactose, top_k=1)
+    dinner_2 = count_calories_per_meal - dinner_1
+    recommended_recipes_dinner_2 = get_recommendations(dinner_2, input_seafood, input_nut, input_lactose, top_k=1)
+
+
+    recommended_recipes = get_recommendations(calories, input_seafood, input_nut, input_lactose, top_k=10)
+    recommended_recipes_breakfast_1 = recommended_recipes_breakfast_1.to_dict('records')
+    recommended_recipes_breakfast_2 = recommended_recipes_breakfast_2.to_dict('records')
+    recommended_recipes_lunch_1 = recommended_recipes_lunch_1.to_dict('records')
+    recommended_recipes_lunch_2 = recommended_recipes_lunch_2.to_dict('records')
+    recommended_recipes_dinner_1 = recommended_recipes_dinner_1.to_dict('records')
+    recommended_recipes_dinner_2 = recommended_recipes_dinner_2.to_dict('records')
+
+
+    srjs = recommended_recipes.to_dict('records')
+    return  {   
+                "message": "Recomendation success deck!", 
+                "status": 200, 
+                "breakfast_1": recommended_recipes_breakfast_1,
+                "breakfast_2": recommended_recipes_breakfast_2,
+                "lunch_1": recommended_recipes_lunch_1,
+                "lunch_2": recommended_recipes_lunch_2,
+                "dinner_1": recommended_recipes_dinner_1,
+                "dinner_2": recommended_recipes_dinner_2,
+                "totral_calories": calories,
+            }
+
+# Flask Application
+@app.route('/recommendation-get', methods=['GET'])
+def recommendation_get():
+    args = request.args
+    user_id = args.get('user_id')
+    _, food_name = index(np.array([user_id]))
+    recommended_food_names = [name.decode('UTF-8') for name in food_name[0, :4].numpy()]
+    return jsonify({"message": "Predict success!", "status": 200, "data": recommended_food_names})
 
 @app.route('/')
 def ok():

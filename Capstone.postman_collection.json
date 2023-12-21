@@ -60,6 +60,30 @@
 				"url": "http://127.0.0.10:5000/food-recomendation"
 			},
 			"response": []
+		},
+		{
+			"name": "Get Food Recommendation",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Food Recommendation Calories",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Recom For Search",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
