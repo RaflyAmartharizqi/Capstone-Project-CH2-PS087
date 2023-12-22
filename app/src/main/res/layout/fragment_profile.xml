@@ -10,8 +10,9 @@
         android:id="@+id/iv_profile"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="24dp"
-        app:srcCompat="@drawable/profile_dafault"
+        android:layout_marginTop="25dp"
+        app:srcCompat="@drawable/profile_default"
+        tools:src="@tools:sample/avatars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/name"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/iv_profile"
         app:layout_constraintStart_toStartOf="@+id/iv_profile"
@@ -32,21 +33,179 @@
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
         android:text="@string/username"
         app:layout_constraintEnd_toEndOf="@+id/tv_name"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
+    <View
+        android:id="@+id/pembatas1"
+        android:layout_width="370dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="#DDDDDD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_username" />
+
+    <TextView
+        android:id="@+id/tv_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reminder"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pembatas1" />
+
+    <TextView
+        android:id="@+id/tv_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reminder" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_reminder" />
+
+    <View
+        android:id="@+id/pembatas2"
+        android:layout_width="370dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="#DDDDDD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_notification" />
+
+    <TextView
+        android:id="@+id/tv_information_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Information User"
+        android:textSize="15sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pembatas2" />
+
+    <TextView
+        android:id="@+id/tv_tinggi_badan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tinggi Badan"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_information_user" />
+
+    <TextView
+        android:id="@+id/tv_berat_badan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Berat Badan"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tinggi_badan" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipe User"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_berat_badan" />
+
+    <TextView
+        android:id="@+id/tv_hasil_bb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tinggi_badan"
+        android:text="60 Kg" />
+
+    <TextView
+        android:id="@+id/tv_hasil_tb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="180 Cm"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_information_user" />
+
+    <TextView
+        android:id="@+id/tv_hasil_tipe_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_berat_badan"
+        android:text="Diet" />
+
+    <View
+        android:id="@+id/pembatas3"
+        android:layout_width="370dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="#DDDDDD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_type" />
+
+    <Button
+        android:id="@+id/editProfilButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/custom_button_transparat"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pembatas3" />
+
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
         android:text="Log Out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+        android:background="@drawable/custom_button"
+        app:layout_constraintStart_toEndOf="@+id/editProfilButton"
+        app:layout_constraintTop_toBottomOf="@+id/pembatas3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

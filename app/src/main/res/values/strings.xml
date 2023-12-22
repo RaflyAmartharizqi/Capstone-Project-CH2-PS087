@@ -39,4 +39,6 @@
 
     <!-- Profile -->
     <string name="username">Username</string>
+
+    <string name="didnt_get_permission">Didn\'t get permission</string>
 </resources>

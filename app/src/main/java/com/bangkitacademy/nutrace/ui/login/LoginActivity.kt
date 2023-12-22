@@ -15,6 +15,7 @@ import com.bangkitacademy.nutrace.customview.MyButton
 import com.bangkitacademy.nutrace.customview.MyEmailEditText
 import com.bangkitacademy.nutrace.customview.PasswordEditText
 import com.bangkitacademy.nutrace.databinding.ActivityLoginBinding
+import com.bangkitacademy.nutrace.ui.InputUserActivity
 import com.bangkitacademy.nutrace.ui.register.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -71,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 val password = binding.passwordEditText.text.toString()
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, InputUserActivity::class.java))
                         finishAffinity()
                     } else {
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()

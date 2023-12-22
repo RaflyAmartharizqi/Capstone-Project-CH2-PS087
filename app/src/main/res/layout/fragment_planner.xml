@@ -1,15 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.planner.PlannerFragment">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/helloTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Planner"
-        android:textSize="24sp"
-        android:layout_centerInParent="true"/>
-</RelativeLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.planner.PlannerFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/blue_700"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/sarapanTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="dd/mm/yyyy"
+                android:textSize="20sp"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/sarapanTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sarapan"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewDate" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipesRowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_goneMarginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/sarapanTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/lightMediumGray"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cardBackgroundColor">
+
+                    <ImageView
+                        android:id="@+id/recipeImageView"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Nama Makanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/recipeImageView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/descriptionTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textSize="14sp"
+                        android:text="Kalori"
+                        app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                        app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+                    <TextView
+                        android:id="@+id/jumlahCalori"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                        app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+                        tools:text="662.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/makanSiangTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Makan Siang"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipesRowLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipesRowLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_goneMarginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/makanSiangTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/lightMediumGray"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cardBackgroundColor">
+
+                    <ImageView
+                        android:id="@+id/recipeImageView2"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/titleTextView2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Nama Makanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/recipeImageView2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/descriptionTextView2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textSize="14sp"
+                        android:text="Kalori"
+                        app:layout_constraintEnd_toEndOf="@+id/titleTextView2"
+                        app:layout_constraintStart_toStartOf="@+id/titleTextView2"
+                        app:layout_constraintTop_toBottomOf="@+id/titleTextView2" />
+
+                    <TextView
+                        android:id="@+id/jumlahCalori2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintEnd_toEndOf="@+id/titleTextView2"
+                        app:layout_constraintStart_toStartOf="@+id/titleTextView2"
+                        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView2"
+                        tools:text="662.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/makanMalamTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Makan Malam"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipesRowLayout2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipesRowLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_goneMarginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/makanMalamTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/lightMediumGray"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/cardBackgroundColor">
+
+                    <ImageView
+                        android:id="@+id/recipeImageView3"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/titleTextView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Nama Makanan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/recipeImageView3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/descriptionTextView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textSize="14sp"
+                        android:text="Kalori"
+                        app:layout_constraintEnd_toEndOf="@+id/titleTextView3"
+                        app:layout_constraintStart_toStartOf="@+id/titleTextView3"
+                        app:layout_constraintTop_toBottomOf="@+id/titleTextView3" />
+
+                    <TextView
+                        android:id="@+id/jumlahCalori3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintEnd_toEndOf="@+id/titleTextView3"
+                        app:layout_constraintStart_toStartOf="@+id/titleTextView3"
+                        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView3"
+                        tools:text="662.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>
